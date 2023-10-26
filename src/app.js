@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
             if (params.get("hello")) {
                 res.statusCode = 200;
                 res.setHeader = "Content-Type : text/html";
-                res.write(`<h1>Hello my friend ${params.get("hello")}!!!</h1>`);
+                res.write(`<h1>Hello my friend ${params.get("hello")}!</h1>`);
                 res.end();
                 return;
             } else {
