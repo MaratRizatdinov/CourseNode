@@ -1,0 +1,19 @@
+{
+  "name": "coursenode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "cross-env PORT=3003 nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
