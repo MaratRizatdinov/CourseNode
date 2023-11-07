@@ -18,6 +18,12 @@ const getUser = (req, res) => {
     const { user_id } = req.params
     return User.findById(user_id)
         .then((data) => {
+            if (data === null)
+                return res
+                    .status(404)
+                    .send(
+                        `Error code: ${res.statusCode}. User with id: ${user_id} was not found`
+                    )
             res.status(200).send(data)
         })
         .catch((err) => {

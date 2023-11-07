@@ -1,21 +1,21 @@
 const mongoose = require("mongoose")
 
-const userSchema = new mongoose.Schema({
-    name: {
+const bookSchema = new mongoose.Schema({
+    bookName: {
         type: String,
         required: true,
         minLength: 2,
     },
-    surName: {
+    bookAuthor: {
         type: String,
         required: true,
         minLength: 2,
     },
-    userName: {
-        type: String,
+    bookReleaseYear: {
+        type: Number,
         required: true,
-        minLength: 5,
+        minLength: 4,
     },
 })
 
-module.exports = mongoose.model("user", userSchema)
+module.exports = mongoose.model("book", bookSchema)

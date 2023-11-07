@@ -1,14 +1,12 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const userRouter = require("./routes/users")
-const loggerOne = require("./middlewares/loggerOne")
-const loggerTwo = require("./middlewares/loggerTwo")
+const bookRouter = require("./routes/books")
+const errorPath = require('./middlewares/errorPath')
+const logOriginalUrl =require('./middlewares/logOriginalUrl')
 const cors = require("cors")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
-// const getUsers = require("./modules/users");
-// const getBooks = require("./modules/books");
-// const isEmptyObject = require("./modules/isEmptyObject");
 
 dotenv.config()
 
@@ -20,7 +18,7 @@ const {
 
 mongoose
     .connect(MONGO_URL)
-    .then((res) => console.log("first"))
+    .then((res) => console.log("Подключение к БД успешно"))
     .catch((err) => console.log("error"));
 
 const app = express()
@@ -30,12 +28,14 @@ const HelloWorld = (req, res) => {
 }
 
 app.use(cors())
-app.use(loggerOne)
-app.use(loggerTwo)
+
 app.use(bodyParser.json())
 app.get("/", HelloWorld)
 
+app.use(logOriginalUrl)
 app.use(userRouter)
+app.use(bookRouter)
+app.use(errorPath);
 
 app.listen(PORT, () => {
     console.log(`Сервер запущен по адресу ${API_URL}:${PORT}`)
